@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+  <title>Framework7 v9 Settings App Pro</title>
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/framework7@9/framework7-bundle.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/framework7-icons/css/framework7-icons.min.css">
+  
+  <style>
+    .icon-box {
+      width: 28px;
+      height: 28px;
+      border-radius: 7px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 16px;
+    }
+    .storage-bar-container {
+      width: 100%;
+      height: 10px;
+      background-color: #e0e0e0;
+      border-radius: 5px;
+      overflow: hidden;
+      display: flex;
+      margin-top: 8px;
+    }
+    .storage-segment {
+      height: 100%;
+    }
+    /* Smooth transition for Privacy Display mode */
+    .page-content {
+      transition: opacity 0.25s ease, filter 0.25s ease, background-color 0.25s ease;
+    }
+    /* Stealth Mode styling applied during Privacy Tilt */
+    .privacy-stealth-active {
+      background-color: #000000 !important;
+      opacity: 0.05 !important;
+      filter: blur(8px) grayscale(100%) !important;
+      pointer-events: none !important;
+    }
+  </style>
+</head>
+<body>
+  <div id="app">
+    <div class="view view-main">
+      <div class="page" data-name="settings">
+        
+        <div class="navbar navbar-large">
+          <div class="navbar-bg"></div>
+          <div class="navbar-inner">
+            <div class="title">Settings</div>
+            <div class="title-large">
+              <div class="title-large-text">Settings</div>
+            </div>
+            <div class="subnavbar">
+              <form class="searchbar searchbar-init" data-search-container=".search-list" data-search-in=".item-title">
+                <div class="searchbar-inner">
+                  <div class="searchbar-input-wrap">
+                    <input type="search" placeholder="Search settings...">
+                    <i class="searchbar-icon"></i>
+                    <span class="input-clear-button"></span>
+                  </div>
+                  <span class="searchbar-disable-button">Cancel</span>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="searchbar-not-found">
+          <div class="block">No matching settings found</div>
+        </div>
+
+        <div class="page-content" id="main-content">
+          <div class="search-list">
+
+            <div class="list media-list inset dividers-inset">
+              <ul>
+                <li>
+                  <a href="#" class="item-link item-content" id="btn-profile">
+                    <div class="item-media">
+                      <img src="https://via.placeholder.com/60" style="border-radius: 50%" width="60" alt="Avatar"/>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title-row">
+                        <div class="item-title style-bold">Alex Johnson</div>
+                      </div>
+                      <div class="item-subtitle">Apple ID, iCloud+, Media & Purchases</div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="block-title">Connectivity & Networks</div>
+            <div class="list inset dividers-inset">
+              <ul>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media">
+                      <div class="icon-box bg-color-orange"><i class="f7-icons">airplane</i></div>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">Airplane Mode</div>
+                      <div class="item-after">
+                        <label class="toggle toggle-init" id="toggle-airplane">
+                          <input type="checkbox">
+                          <span class="toggle-icon"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <a href="#" class="item-link item-content" id="btn-wifi">
+                    <div class="item-media">
+                      <div class="icon-box bg-color-blue"><i class="f7-icons">wifi</i></div>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">Wi-Fi</div>
+                      <div class="item-after" id="wifi-status">Home_Network_5G</div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="item-link item-content" id="btn-bluetooth">
+                    <div class="item-media">
+                      <div class="icon-box bg-color-blue"><i class="f7-icons">bluetooth</i></div>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">Bluetooth</div>
+                      <div class="item-after" id="bt-status">On (3 Devices)</div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="item-link item-content">
+                    <div class="item-media">
+                      <div class="icon-box bg-color-green"><i class="f7-icons">antenna_radiowaves_left_right</i></div>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">Cellular Data</div>
+                      <div class="item-after">5G Auto</div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="item-link item-content" id="btn-hotspot">
+                    <div class="item-media">
+                      <div class="icon-box bg-color-teal"><i class="f7-icons">personalhotspot</i></div>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">Personal Hotspot</div>
+                      <div class="item-after" id="hotspot-status">Off</div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="item-link item-content" id="btn-vpn">
+                    <div class="item-media">
+                      <div class="icon-box bg-color-deeporange"><i class="f7-icons">lock_shield_fill</i></div>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">VPN Configuration</div>
+                      <div class="item-after" id="vpn-status">Disconnected</div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="block-title">Display & Appearance</div>
+            <div class="list inset dividers-inset">
+              <ul>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media">
+                      <div class="icon-box bg-color-blue"><i class="f7-icons">sun_max_fill</i></div>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title style-width-100">
+                        Screen Brightness
+                        <div class="range-slider range-slider-init" data-min="0" data-max="100" data-step="1" data-value="80" id="slider-brightness">
+                          <input type="range" min="0" max="100" value="80">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media">
+                      <div class="icon-box bg-color-purple"><i class="f7-icons">moon_stars_fill</i></div>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">Dark Mode</div>
+                      <div class="item-after">
+                        <label class="toggle toggle-init" id="toggle-darkmode">
+                          <input type="checkbox">
+                          <span class="toggle-icon"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media">
+                      <div class="icon-box bg-color-black"><i class="f7-icons">eye_slash_fill</i></div>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">
+                        Privacy Display Mode
+                        <div class="item-footer">Turns screen pitch black when tilted left or right</div>
+                      </div>
+                      <div class="item-after">
+                        <label class="toggle toggle-init" id="toggle-privacy-display">
+                          <input type="checkbox">
+                          <span class="toggle-icon"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <a href="#" class="item-link item-content" id="btn-accent-color">
+                    <div class="item-media">
+                      <div class="icon-box bg-color-deeppurple"><i class="f7-icons">paintpalette_fill</i></div>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">App Accent Theme</div>
+                      <div class="item-after" id="current-theme-name">Default (Blue)</div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media">
+                      <div class="icon-box bg-color-pink"><i class="f7-icons">textformat</i></div>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">Bold Text</div>
+                      <div class="item-after">
+                        <label class="toggle toggle-init" id="toggle-boldtext">
+                          <input type="checkbox">
+                          <span class="toggle-icon"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="block-title">Sounds, Haptics & Audio</div>
+            <div class="list inset dividers-inset">
+              <ul>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media">
+                      <div class="icon-box bg-color-red"><i class="f7-icons">speaker_5_fill</i></div>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title style-width-100">
+                        Ringtone & Alerts Volume
+                        <div class="range-slider range-slider-init color-red" data-min="0" data-max="100" data-step="1" data-value="65" id="slider-volume">
+                          <input type="range" min="0" max="100" value="65">
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media">
+                      <div class="icon-box bg-color-pink"><i class="f7-icons">waveform</i></div>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">System Haptics</div>
+                      <div class="item-after">
+                        <label class="toggle toggle-init" id="toggle-haptics">
+                          <input type="checkbox" checked>
+                          <span class="toggle-icon"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+              </ul>
+            </div>
+
+            <div class="block-title">Focus & Notifications</div>
+            <div class="list inset dividers-inset">
+              <ul>
+                <li>
+                  <a href="#" class="item-link item-content" id="btn-focus">
+                    <div class="item-media">
+                      <div class="icon-box bg-color-indigo"><i class="f7-icons">moon_fill</i></div>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">Focus Mode</div>
+                      <div class="item-after" id="focus-status">Work</div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="block-title">Battery & Storage</div>
+            <div class="list inset dividers-inset">
+              <ul>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media">
+                      <div class="icon-box bg-color-green"><i class="f7-icons">battery_100</i></div>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">Battery Charge</div>
+                      <div class="item-after" id="battery-level-text">88% (Healthy)</div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media">
+                      <div class="icon-box bg-color-yellow"><i class="f7-icons">bolt_fill</i></div>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">Low Power Mode</div>
+                      <div class="item-after">
+                        <label class="toggle toggle-init" id="toggle-lowpower">
+                          <input type="checkbox">
+                          <span class="toggle-icon"></span>
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <div class="item-content">
+                    <div class="item-media">
+                      <div class="icon-box bg-color-gray"><i class="f7-icons">device_desktop</i></div>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title style-width-100">
+                        <div>Internal Storage: 78.4 GB / 128 GB</div>
+                        <div class="storage-bar-container">
+                          <div class="storage-segment bg-color-blue" style="width: 35%"></div>
+                          <div class="storage-segment bg-color-red" style="width: 15%"></div>
+                          <div class="storage-segment bg-color-yellow" style="width: 10%"></div>
+                          <div class="storage-segment bg-color-gray" style="width: 2%"></div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </li>
+                <li>
+                  <a href="#" class="item-link item-content" id="btn-cache">
+                    <div class="item-media">
+                      <div class="icon-box bg-color-brown"><i class="f7-icons">trash_fill</i></div>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">Clear System Cache</div>
+                      <div class="item-after">1.24 GB Junk</div>
+                    </div>
+                  </a>
+                </li>
+              </ul>
+            </div>
+
+            <div class="block-title">Security & System Actions</div>
+            <div class="list inset dividers-inset">
+              <ul>
+                <li>
+                  <a href="#" class="item-link item-content" id="btn-software-update">
+                    <div class="item-media">
+                      <div class="icon-box bg-color-gray"><i class="f7-icons">gear_alt_fill</i></div>
+                    </div>
+                    <div class="item-inner">
+                      <div class="item-title">Software Update</div>
+                      <div class="item-after"><span class="badge color-red">1</span></div>
+                    </div>
+                  </a>
+                </li>
+                <li>
+                  <a href="#" class="item-link list-button color-red" id="btn-reset">Reset Network Settings</a>
+                </li>
+              </ul>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/framework7@9/framework7-bundle.min.js"></script>
+  
+  <script>
+    const app = new Framework7({
+      el: '#app',
+      name: 'Settings App Pro',
+      theme: 'ios',
+    });
+
+    const mainView = app.views.create('.view-main');
+
+    // 1. Dark Mode
+    const darkModeToggle = app.toggle.get('#toggle-darkmode');
+    darkModeToggle.on('change', (toggle) => {
+      app.setDarkMode(toggle.checked);
+    });
+
+    // 2. Airplane Mode
+    const airplaneToggle = app.toggle.get('#toggle-airplane');
+    airplaneToggle.on('change', (toggle) => {
+      const wifiStatus = document.getElementById('wifi-status');
+      if (toggle.checked) {
+        wifiStatus.innerText = 'Off';
+        app.toast.create({ text: 'Airplane Mode Activated', closeTimeout: 1500 }).open();
+      } else {
+        wifiStatus.innerText = 'Home_Network_5G';
+        app.toast.create({ text: 'Airplane Mode Deactivated', closeTimeout: 1500 }).open();
+      }
+    });
+
+    // 3. Privacy Display Tilt Detector (Blackout Active)
+    const privacyToggle = app.toggle.get('#toggle-privacy-display');
+    const mainContent = document.getElementById('main-content');
+
+    function handleOrientation(event) {
+      if (!privacyToggle.checked) {
+        mainContent.classList.remove('privacy-stealth-active');
+        return;
+      }
+      const tilt = Math.abs(event.gamma || 0);
+      if (tilt > 22) {
+        mainContent.classList.add('privacy-stealth-active');
+      } else {
+        mainContent.classList.remove('privacy-stealth-active');
+      }
+    }
+
+    privacyToggle.on('change', (toggle) => {
+      if (toggle.checked) {
+        if (typeof DeviceOrientationEvent !== 'undefined' && typeof DeviceOrientationEvent.requestPermission === 'function') {
+          DeviceOrientationEvent.requestPermission()
+            .then(response => {
+              if (response === 'granted') {
+                window.addEventListener('deviceorientation', handleOrientation);
+                app.toast.create({ text: 'Privacy Display Enabled', closeTimeout: 1500 }).open();
+              } else {
+                toggle.checked = false;
+                app.dialog.alert('Permission to access device orientation was denied.');
+              }
+            })
+            .catch(console.error);
+        } else {
+          window.addEventListener('deviceorientation', handleOrientation);
+          app.toast.create({ text: 'Privacy Display Enabled', closeTimeout: 1500 }).open();
+        }
+      } else {
+        window.removeEventListener('deviceorientation', handleOrientation);
+        mainContent.classList.remove('privacy-stealth-active');
+        app.toast.create({ text: 'Privacy Display Disabled', closeTimeout: 1500 }).open();
+      }
+    });
+
+    // 4. Accent Theme Picker
+    document.getElementById('btn-accent-color').addEventListener('click', () => {
+      app.actions.create({
+        buttons: [
+          [
+            { text: 'Choose Accent Color', label: true },
+            { text: 'Default (Blue)', onClick: () => changeThemeColor('blue', 'Default (Blue)') },
+            { text: 'Emerald Green', onClick: () => changeThemeColor('green', 'Emerald Green') },
+            { text: 'Vibrant Purple', onClick: () => changeThemeColor('purple', 'Vibrant Purple') },
+            { text: 'Sunset Orange', onClick: () => changeThemeColor('orange', 'Sunset Orange') }
+          ],
+          [{ text: 'Cancel', color: 'red' }]
+        ]
+      }).open();
+    });
+
+    function changeThemeColor(color, label) {
+      document.getElementById('app').className = 'color-theme-' + color;
+      document.getElementById('current-theme-name').innerText = label;
+    }
+
+    // 5. Bold Text Toggle
+    const boldToggle = app.toggle.get('#toggle-boldtext');
+    boldToggle.on('change', (toggle) => {
+      document.body.style.fontWeight = toggle.checked ? 'bold' : 'normal';
+    });
+
+    // 6. VPN Connection Switcher
+    document.getElementById('btn-vpn').addEventListener('click', () => {
+      const vpnStatus = document.getElementById('vpn-status');
+      if (vpnStatus.innerText === 'Disconnected') {
+        app.dialog.preloader('Connecting to Secure VPN...');
+        setTimeout(() => {
+          app.dialog.close();
+          vpnStatus.innerText = 'Connected (US-West)';
+          app.toast.create({ text: 'VPN Connected', closeTimeout: 1500 }).open();
+        }, 1200);
+      } else {
+        vpnStatus.innerText = 'Disconnected';
+        app.toast.create({ text: 'VPN Disconnected', closeTimeout: 1500 }).open();
+      }
+    });
+
+    // 7. Clear Cache Utility
+    document.getElementById('btn-cache').addEventListener('click', () => {
+      app.dialog.confirm('Clear 1.24 GB of cached junk files?', 'Storage Optimization', () => {
+        app.dialog.preloader('Cleaning cache...');
+        setTimeout(() => {
+          app.dialog.close();
+          app.dialog.alert('System storage optimized! 1.24 GB freed up.');
+        }, 1000);
+      });
+    });
+
+    // 8. Software Update Checker
+    document.getElementById('btn-software-update').addEventListener('click', () => {
+      app.dialog.preloader('Checking for software updates...');
+      setTimeout(() => {
+        app.dialog.close();
+        app.dialog.alert('Your device is up to date with iOS 18.2', 'Software Update');
+      }, 1000);
+    });
+
+    // 9. Reset Settings Dialog
+    document.getElementById('btn-reset').addEventListener('click', () => {
+      app.dialog.confirm(
+        'Reset network configurations?',
+        'Reset Settings',
+        () => app.dialog.alert('All settings restored to defaults.')
+      );
+    });
+  </script>
+</body>
+</html>
